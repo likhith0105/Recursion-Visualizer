@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recursion Visualizer</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>🔁 Recursion Visualizer</h1>
+      <p class="subtitle">Interactive step-by-step visualization of recursive algorithms</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="controls-panel">
+      <div class="control-group">
+        <label for="algorithm-select">Algorithm</label>
+        <select id="algorithm-select">
+          <option value="factorial">Factorial</option>
+          <option value="fibonacci">Fibonacci</option>
+          <option value="hanoi">Tower of Hanoi</option>
+          <option value="binarySearch">Recursive Binary Search</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="input-value">Input</label>
+        <div class="input-group">
+          <input type="number" id="input-value" min="1" max="20" value="5">
+          <button id="generate-btn" class="btn btn-primary">Generate</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="speed-control">Speed: <span id="speed-label">500</span>ms</label>
+        <input type="range" id="speed-control" min="100" max="2000" step="100" value="500">
+      </div>
+
+      <div class="control-group controls-actions">
+        <button id="play-btn" class="btn btn-play" disabled>▶ Play</button>
+        <button id="pause-btn" class="btn btn-pause" disabled>⏸ Pause</button>
+        <button id="prev-btn" class="btn" disabled>◀ Prev</button>
+        <button id="next-btn" class="btn" disabled>Next ▶</button>
+        <button id="reset-btn" class="btn btn-reset" disabled>⟲ Reset</button>
+      </div>
+    </div>
+
+    <div id="visualization-area" class="visualization-area">
+      <div class="placeholder">
+        <p>Select an algorithm and input value, then click <strong>Generate</strong> to see the visualization.</p>
+        <div class="algorithm-descriptions">
+          <div class="algo-card" data-algo="factorial">
+            <h3>📐 Factorial</h3>
+            <p><code>n! = n × (n-1)!</code> with base case <code>0! = 1</code></p>
+          </div>
+          <div class="algo-card" data-algo="fibonacci">
+            <h3>🌿 Fibonacci</h3>
+            <p><code>F(n) = F(n-1) + F(n-2)</code> with base cases <code>F(0)=0, F(1)=1</code></p>
+          </div>
+          <div class="algo-card" data-algo="hanoi">
+            <h3>🗼 Tower of Hanoi</h3>
+            <p>Move n disks from source to destination using auxiliary peg</p>
+          </div>
+          <div class="algo-card" data-algo="binarySearch">
+            <h3>🔍 Binary Search</h3>
+            <p>Search sorted array by recursively dividing the search range in half</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="visualization-content" style="display:none;">
+        <div id="visualization-canvas-wrapper">
+          <canvas id="visualization-canvas"></canvas>
+        </div>
+        <div id="call-stack-panel">
+          <h3>Call Stack <span id="call-stack-depth" class="badge">0</span></h3>
+          <div id="call-stack-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <div class="info-tabs">
+        <button class="tab-btn active" data-tab="description">Description</button>
+        <button class="tab-btn" data-tab="code">Code</button>
+        <button class="tab-btn" data-tab="complexity">Complexity</button>
+      </div>
+      <div id="description-tab" class="tab-content active">
+        <p>Click <strong>Generate</strong> to start visualizing the selected algorithm.</p>
+      </div>
+      <div id="code-tab" class="tab-content">
+        <pre><code id="algorithm-code">// Select an algorithm and click Generate</code></pre>
+      </div>
+      <div id="complexity-tab" class="tab-content">
+        <p>Select an algorithm to see its time and space complexity.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/algorithms.js"></script>
+  <script src="js/visualizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
